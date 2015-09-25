@@ -1,0 +1,50 @@
+<div dir="rtl" align="right">
+	<div class="row">
+		<div class="col m5 s12">
+			<nav>
+				<div class="nav-wrapper">
+					<form ng-submit="search(searchText)">
+						<div class="input-field">
+							<input id="search" type="search" required ng-model="searchText">
+							<label for="search"><i class="mdi-action-search"></i></label>
+							<i class="mdi-action-close"></i>
+						</div>
+					</form>
+				</div>
+			</nav>
+		</div>
+		<h4 class="col m7 s12 hide-on-med-and-down">نرم افزارهای من</h4>
+	</div>
+	<div class="progress"  ng-show="apps.status==0">
+		<div class="indeterminate"></div>
+	</div>
+	<div class="collection-item" ng-show="apps.status==3">Fail to load</div>
+	<div ng-show="apps.status==1">
+		<table class="bordered hoverable responsive-table centered">
+			<thead>
+				<tr class="hide-on-med-and-down">
+					<th data-field="id">#</th>
+					<th data-field="title">عنوان</th>
+					<th data-field="action"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="app in pagination.list">
+					<td>{{app.id}}</td>
+					<td class="truncate right-align"><a href="#!"
+						ng-click="gotoPart(part.id)">{{app.title}}</a></td>
+					<td><a class="waves-effect waves-light btn"
+						ng-click="openApplication(app.id)">صفحه اصلی</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<div dir="ltr">
+			<pagination hide-if-empty="true" page-size="1"
+				total="{{pagination.page_number}}"
+				pagination-action="changePage(page)">
+		</div>
+	</div>
+</div>
+
+

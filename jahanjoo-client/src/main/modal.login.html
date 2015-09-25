@@ -1,0 +1,25 @@
+<!-- Login Modal Structure -->
+<div id="loginModal" class="modal">
+	<form class="col s12" ng-submit="exec({id:'pluf.user.login'}, {username:user_name,password:user_password})">
+		<div class="modal-content" dir="rtl">
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="email" type="text" class="validate" ng-model="user_name">
+					<label for="email">نام کاربری</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="password" type="password" class="validate"
+						ng-model="user_password"> <label for="password">گذرواژه</label>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input
+				class="modal-action modal-close waves-effect waves-green btn-flat"
+				type="submit" name="mysubmit" value="ورود" /> <a href="#!"
+				class=" modal-action modal-close waves-effect waves-green btn-flat">انصراف</a>
+		</div>
+	</form>
+</div>

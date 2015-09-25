@@ -1,0 +1,34 @@
+{extends "index.html"}
+{cfg 'debug', false, false}
+
+{block MoreLibrary}
+{if $cfg_debug}
+	<script src="/assets/lib/angular-xeditable/dist/js/xeditable.min.js"></script>
+	<script src="/assets/lib/angular-validation-match/dist/angular-validation-match.min.js"></script>
+{else}
+	<script src="/assets/js/xeditable.min.js"></script>
+	<script src="/assets/js/angular-validation-match.min.js"></script>
+{/if}
+{/block}
+
+{block Application}
+{if $cfg_debug}
+<!-- برنامه‌ها -->
+<script type="text/javascript" src="/profile/module.js"></script>
+<script type="text/javascript" src="/profile/routes.js"></script>
+<script type="text/javascript" src="/profile/controller.main.js"></script>
+<script type="text/javascript" src="/profile/controller.app.js"></script>
+<script type="text/javascript" src="/profile/controller.account.js"></script>
+<script type="text/javascript" src="/profile/controller.profile.js"></script>
+<script type="text/javascript" src="/profile/controller.apps.js"></script>
+<script type="text/javascript" src="/profile/controller.credential.js"></script>
+<script type="text/javascript" src="/profile/controller.header.js"></script>
+
+<script type="text/javascript" src="/module/pluf.js"></script>
+<script type="text/javascript" src="/module/pluf.saas.js"></script>
+{else}
+<script type="text/javascript" src="/profile/app.min.js"></script>
+<script type="text/javascript" src="/module/pluf.min.js"></script>
+<script type="text/javascript" src="/module/pluf.saas.min.js"></script>
+{/if}
+{/block}

@@ -1,0 +1,31 @@
+{extends "index.html"}
+{cfg 'debug', false, false}
+
+{block MoreLibrary}
+{if $cfg_debug}
+	<script type="text/javascript" src="/assets/lib/markdown/lib/markdown.js"></script>
+{else}
+	<script type="text/javascript" src="/assets/js/markdown.min.js"></script>
+{/if}
+{/block}
+
+{block Application}
+{if $cfg_debug}
+	<!-- برنامه‌ها -->
+	<script type="text/javascript" src="/help/module.js"></script>
+	<script type="text/javascript" src="/help/routes.js"></script>
+	<script type="text/javascript" src="/help/controller.main.js"></script>
+	<script type="text/javascript" src="/help/controller.app.js"></script>
+	<script type="text/javascript" src="/help/controller.wiki.js"></script>
+	<script type="text/javascript" src="/help/controller.header.js"></script>
+	
+	<script type="text/javascript" src="/module/pluf.js"></script>
+	<script type="text/javascript" src="/module/pluf.saas.js"></script>
+	<script type="text/javascript" src="/module/pluf.help.js"></script>
+{else}
+	<script type="text/javascript" src="/help/app.min.js"></script>
+	<script type="text/javascript" src="/module/pluf.min.js"></script>
+	<script type="text/javascript" src="/module/pluf.saas.min.js"></script>
+	<script type="text/javascript" src="/module/pluf.help.min.js"></script>
+{/if}
+{/block}

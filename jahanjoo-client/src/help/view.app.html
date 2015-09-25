@@ -1,0 +1,19 @@
+<div class="row" dir="rtl">
+	<div class="col l4 s12">
+	<ul class="collapsible popout" data-collapsible="accordion" watch>
+    	<li ng-repeat="page in pages">
+        	<div class="collapsible-header">{{page.title | translate}}</div>
+        	<div class="collapsible-body">
+	        	<p>{{page.description | translate}}
+	        	<span><a href="" ui-sref="app.page({name:page.id})">{{'read more' | translate}}</a></span>
+	        	</p>
+        	</div>
+    	</li>
+	</ul>
+	</div>
+	<div class="col l8 s12 ">
+		<ui-view></ui-view>
+	</div>
+</div>
+
+<div data-ng-include="'/main/modal.login.html'"></div>

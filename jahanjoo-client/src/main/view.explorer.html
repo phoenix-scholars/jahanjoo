@@ -1,0 +1,170 @@
+<div class="row">
+	<div class="col s12 m6">
+		<div class="card">
+			<div class="card-content" dir="rtl">
+				<div class="col s12 card-title activator grey-text text-darken-4 right">تنظیم‌های جستجو
+					<i class="material-icons left">more_vert</i>
+				</div>
+				<div class="switch">
+				  مکانهای من<br/>
+				  <label>
+				  	روشن
+				    <input type="checkbox" ng-model="config.userLocation" ng-click="newSearch(searchText)">
+				    <span class="lever"></span>
+				    خاموش
+				  </label>
+				</div>
+				<div class="switch">
+				  نمایش جزئیات<br/>
+				  <label>
+				  	روشن
+				    <input type="checkbox" ng-model="config.locationDetail" ng-click="newSearch(searchText)">
+				    <span class="lever"></span>
+				    خاموش
+				  </label>
+				</div>
+				<div class="switch">
+				  نمایش ابزارهای برای هر مکان<br/>
+				  <label>
+				  	روشن
+				    <input type="checkbox" ng-model="config.locationOperator" ng-click="newSearch(searchText)">
+				    <span class="lever"></span>
+				    خاموش
+				  </label>
+				</div>
+			</div>
+			<div class="card-reveal" dir="rtl">
+				<div class="col s12 card-title grey-text text-darken-4 right">تنظیم‌های جستجو
+					<i class="material-icons left">close</i></div>
+				<p>با استفاده از تنظیم‌هایی که در این بخش قرار گرفته می‌توانید جستجو را مدیریت کنید.</p>
+			</div>
+		</div>
+	</div>
+	<div class="col s12 m6" dir="rtl">
+		<div class="card">
+			<div class="card-content">
+				<div class="col s12 card-title activator grey-text text-darken-4 right">ابزارها
+					<i class="material-icons left">more_vert</i>
+				</div>
+				<ul>
+					<li><a class="waves-effect waves-teal btn-flat" href='#addLocationModal' modal>
+						<i class="material-icons">add</i>اضافه کردن یک مکان جدید.</a></li>
+				</ul>
+			</div>
+			<div class="card-reveal">
+				<div class="col s12 card-title grey-text text-darken-4 right">ابزارها
+					<i class="material-icons left">close</i></div>
+				<p>با استفاده از این ابزارها می‌توانید مکان‌های خود را مدیریت کنید. برای نمونه با 
+				استفاده از این ابزارها می‌توانید یک مکان جدید را در سیستم تعریف کنید.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- body -->
+<div class="row">
+	<div dir="rtl" align="right">
+		<div class="row">
+			<div class="col m5 s12">
+				<nav>
+					<div class="nav-wrapper">
+						<form ng-submit="newSearch(searchText)">
+							<div class="input-field">
+								<input class="teal lighten-2" id="search" type="search" required ng-model="searchText"> 
+								<label for="search">
+									<i class="mdi-action-search"></i>
+								</label> 
+								<i class="mdi-action-close"></i>
+							</div>
+						</form>
+					</div>
+				</nav>
+			</div>
+			<h4 class="col m7 s12 hide-on-med-and-down">مکان‌ها</h4>
+		</div>
+		<div class="progress"  ng-show="pageState==1">
+			<div class="indeterminate"></div>
+		</div>
+		<div ng-show="pageSate==2"></div>
+		<table class="bordered hoverable responsive-table centered"  ng-show="pageState==0">
+			<thead>
+				<tr class="hide-on-med-and-down">
+					<th data-field="id">#</th>
+					<th data-field="title">نام</th>
+					<th data-field="price">توضیحات</th>
+					<th data-field="community" ng-show="config.locationDetail">اجتماعی</th>
+					<th data-field="latitude" ng-show="config.locationDetail">عرض</th>
+					<th data-field="longitude" ng-show="config.locationDetail">طول</th>
+					<th data-field="creation_dtime" ng-show="config.locationDetail">ایجاد</th>
+					<th data-field="modif_dtime" ng-show="config.locationDetail">به روز رسانی</th>
+					<th data-field="action" ng-show="config.locationOperator"></th>
+				</tr>
+			</thead>
+	
+			<tbody>
+				<tr ng-repeat="location in pagination.list">
+					<td>{{location.id}}</td>
+					<td>{{location.name}}</td>
+					<td>{{location.description}}</td>
+					<td ng-show="config.locationDetail">{{location.community}}</td>
+					<td ng-show="config.locationDetail">{{location.latitude}}</td>
+					<td ng-show="config.locationDetail">{{location.longitude}}</td>
+					<td ng-show="config.locationDetail">{{location.creation_dtime}}</td>
+					<td ng-show="config.locationDetail">{{location.modif_dtime}}</td>
+					<td ng-show="config.locationOperator">
+						<div ng-show="user.administrator || location.reporter == user.id">
+							<a href="" ng-click="removeLocation(location)">
+								<i class="material-icons left">delete</i>
+							</a>
+						</div>
+					</td>
+			</tbody>
+		</table>
+		<div dir="ltr">
+			<pagination 
+				hide-if-empty="true" 
+				page-size="1"
+				total="{{pagination.page_number}}"
+				pagination-action="changePage(page)">
+		</div>
+	</div>
+</div>
+
+<!-- Login Modal Structure -->
+<div id="addLocationModal" class="modal">
+	<form name="locationForm" class="col s12" ng-submit="addLocation(location_title,location_description, location_longitude, location_latitude)">
+		<div class="modal-content" dir="rtl">
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="location_title" type="text" class="validate" ng-model="location_title" required>
+					<label for="location_title">عنوان</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="location_description" type="text" class="validate" ng-model="location_description">
+					<label for="location_description">توضیحات</label>
+				</div>
+			</div>
+			<div class="row">
+        		<div class="input-field col s6">
+					<div class="input-field col s12">
+						<input id="location_longitude" type="text" class="validate" ng-model="location_longitude" required>
+						<label for="location_longitude">طول - Longitude</label>
+					</div>
+				</div>
+       		 	<div class="input-field col s6">
+					<div class="input-field col s12">
+						<input id="location_latitude" type="text" class="validate" ng-model="location_latitude" required>
+						<label for="location_latitude">عرض - Latitude</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input ng-show="locationForm.$valid" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="mysubmit" value="ایجاد" />
+			<a class=" modal-action modal-close waves-effect waves-green btn-flat">انصراف</a>
+		</div>
+	</form>
+</div>
+

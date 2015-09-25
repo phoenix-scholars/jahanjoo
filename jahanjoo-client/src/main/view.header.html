@@ -1,0 +1,32 @@
+<div class="navbar-fixed">
+	<nav class="teal lighten-2">
+		<div class="nav-wrapper" >
+			<a id="logo-container" href="/#/app/welcome" class="brand-logo">
+				<img width="50px" src="/assets/img/logo.svg" alt="">
+				<span class="hide-on-med-and-down">{{'jahanjoo' | translate}}</span>
+			</a>
+			<a href="#" 
+				data-activates="nav-mobile" 
+				class="button-collapse right show-on-medium-and-up"
+				data-sidenav="right" 
+				data-menuwidth="300"
+				data-closeonclick="true">
+				<i class="material-icons text-myblue">more_vert</i>
+			</a>
+			<ul  class="right hide-on-med-and-down"
+				data-ng-repeat="menu in navbar | orderBy:['priority']">
+				<li data-ng-show="menu.visible()">
+					<a href="" data-ng-click="menu.active()">{{menu.label | translate}}</a>
+				</li>
+			</ul>
+			<ul id="nav-mobile" 
+				class="side-nav right-align">
+				<div data-ng-repeat="menu in sidebar | orderBy:['priority']">
+					<li data-ng-show="menu.visible()">
+						<a href="" data-ng-click="menu.active()"> {{menu.label | translate}}</a>
+					</li>
+				</div>
+			</ul>
+		</div>
+	</nav>
+</div>

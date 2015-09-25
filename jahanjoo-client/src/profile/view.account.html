@@ -1,0 +1,67 @@
+<div id="account" class="col s12" dir="rtl" align="right">
+	<table>
+		<tbody>
+			<tr>
+				<td>شناسه</td>
+				<td>{{user.id}}</td>
+			</tr>
+			<tr>
+				<td>نام کاربری</td>
+				<td>{{user.login}}</td>
+			</tr>
+			<tr>
+				<td>نام</td>
+				<td><a onbeforesave='updateAccount(user, "first_name", $data)'
+					editable-text="user.first_name"> {{user.first_name || "مقداری
+						تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>نام خانوادگی</td>
+				<td><a
+					onbeforesave='updateAccount(message, "last_name", $data)'
+					editable-text="user.last_name"> {{user.last_name || "مقداری
+						تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>زبان</td>
+				<td><a onbeforesave='updateAccount(user, "language", $data)'
+					editable-text="user.language"> {{user.language || "مقداری
+						تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>منطقه زمانی</td>
+				<td><a onbeforesave='updateAccount(user, "timeZone", $data)'
+					editable-text="user.timezone"> {{user.timezone || "مقداری
+						تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>رایانامه</td>
+				<td><a onbeforesave='updateAccount(user, "email", $data)'
+					editable-text="user.email"> {{user.email || "مقداری تعیین نشده
+						است."}}</a></td>
+			</tr>
+			<tr>
+				<td>مدیریت سیستم</td>
+				<td>{{user.administrator}}</td>
+			</tr>
+			<tr>
+				<td>کارمند سیستم</td>
+				<td>{{user.staff}}</td>
+			</tr>
+			<tr>
+				<td>گروه‌ها</td>
+				<td>{{user.groups}}</td>
+			</tr>
+			<tr>
+				<td>آخرین ورود</td>
+				<td>{{user.last_login}}</td>
+			</tr>
+			<tr>
+				<td>تاریخ عضویت</td>
+				<td>{{user.date_joined}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+

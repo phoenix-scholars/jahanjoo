@@ -1,0 +1,56 @@
+<div id="profile" class="col s12" dir="rtl">
+	<table>
+		<tbody>
+			<tr>
+				<td>عنوان</td>
+				<td><a onbeforesave='updateProfile("title", $data)'
+					editable-text="profile.title"> {{profile.title || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>استان</td>
+				<td><a onbeforesave='updateProfile("state", $data)'
+					editable-text="profile.state"> {{profile.state || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>شهر</td>
+				<td><a onbeforesave='updateProfile("city", $data)'
+					editable-text="profile.city"> {{profile.city || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>کشور</td>
+				<td><a onbeforesave='updateProfile("country", $data)'
+					editable-text="profile.country"> {{profile.country || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>آدرس</td>
+				<td><a onbeforesave='updateProfile("address", $data)'
+					editable-text="profile.address"> {{profile.address || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>کد ملی</td>
+				<td><a onbeforesave='updateProfile("national_id", $data)'
+					editable-text="profile.national_id"> {{profile.national_id || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>کد پستی</td>
+				<td><a onbeforesave='updateProfile("postal_code", $data)'
+					editable-text="profile.postal_code"> {{profile.postal_code || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>شماره تماس</td>
+				<td><a onbeforesave='updateProfile("phone_number", $data)'
+					editable-text="profile.phone_number"> {{profile.phone_number || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>شماره همراه</td>
+				<td><a onbeforesave='updateProfile("mobile_number", $data)'
+					editable-text="profile.mobile_number"> {{profile.mobile_number || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+			<tr>
+				<td>شماره شبا</td>
+				<td><a onbeforesave='updateProfile("shaba", $data)'
+					editable-text="profile.shaba"> {{profile.shaba || "مقداری تعیین نشده است."}}</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
