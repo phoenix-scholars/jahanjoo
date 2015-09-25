@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 }, {
                   expand: true,
                   cwd: 'src/assets/',
-                  src: ['wiki/**', 'css/**', 'img/**'],
+                  src: ['wiki/**', 'css/**', 'img/**', 'font/**'],
                   dest: 'dest/assets'
                 }, ],
               },
@@ -68,7 +68,6 @@ module.exports = function(grunt) {
                       src: ['**'],
                       dest: 'dest/assets/css'
                     },
-
                     {
                       expand: true,
                       cwd: 'src/assets/lib/jquery/dist',
@@ -95,23 +94,20 @@ module.exports = function(grunt) {
                 files: [{
                   expand: true,
                   cwd: 'src/main',
-                  src: ['*.html', 'css/**', 'fonts/**', 'img/**'],
+                  src: ['*.html', 'css/**', 'font/**', 'img/**'],
                   dest: 'dest/main'
                 }, {
                   expand: true,
-                  cwd: 'src/main/help',
-                  src: ['*.html', 'css/**', 'fonts/**', 'img/**'],
-                  dest: 'dest/main/help'
+                  cwd: 'src/help',
+                  src: ['*.html', 'css/**', 'font/**', 'img/**'],
+                  dest: 'dest/help'
                 }, {
                   expand: true,
-                  cwd: 'src/main/profile',
-                  src: ['*.html', 'css/**', 'fonts/**', 'img/**'],
-                  dest: 'dest/main/profile'
+                  cwd: 'src/profile',
+                  src: ['*.html', 'css/**', 'font/**', 'img/**'],
+                  dest: 'dest/profile'
                 }, ],
               },
-            },
-            jshint: {
-              modules: ['src/module/*.js']
             },
             uglify: {
               options: {
@@ -132,8 +128,9 @@ module.exports = function(grunt) {
                 },
                 files: {
                   'dest/module/pluf.min.js': 'src/module/pluf.js',
+                  'dest/module/pluf.admin.min.js': 'src/module/pluf.admin.js',
                   'dest/module/pluf.saas.min.js': 'src/module/pluf.saas.js',
-                  'dest/module/pluf.wiki.min.js': 'src/module/pluf.wiki.js',
+                  'dest/module/pluf.help.min.js': 'src/module/pluf.help.js',
                   'dest/module/pluf.jahanjoo.min.js': 'src/module/pluf.jahanjoo.js',
                 }
               },

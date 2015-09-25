@@ -42,20 +42,6 @@ app
             command: 'pluf.user.logout'
           });
 
-          /**
-           * تعیین می‌کند که آیا سیستم بار گذاری شده است.
-           */
-          $scope.isReady = function() {
-            return $scope.app.state == 1;
-          }
-
-          /**
-           * صفحه اصلی نرم‌افزار تعیین شده را باز می‌کند.
-           */
-          $scope.openApplication = function(appId) {
-            return $window.location.href = '/' + appId;
-          }
-
           // FIXME: maso, 2015: تمام سیستم‌های تولید گزارش به کاربر باید
           // در این قسمت اضافه شود.
           $notify.onError(function(msg, e) {
@@ -91,8 +77,10 @@ app
   // Our translations will go in here
   $translateProvider.translations('fa', {
     'register': 'ثبت نام',
-    'online demo': 'نمونه های آنلاین',
-    'login': 'ورود'
+    'login': 'ورود',
+    'logout': 'خروج',
+    'help' : 'راهنما',
+    'profile': 'پروفایل',
   });
   $translateProvider.preferredLanguage('fa');
 });

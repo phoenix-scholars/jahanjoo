@@ -9,6 +9,8 @@ CACHE MANIFEST
 ##############################################################
 {else}
 /assets/img/favicon.png
+/assets/css/style.css
+/assets/font/mg.woff2
 {/if}
 
 {if $cfg_debug}
@@ -17,21 +19,10 @@ CACHE MANIFEST
 #                                                            #
 ##############################################################
 # JS (Debug mode)
-/assets/lib/jquery/dist/jquery.min.js
-/assets/lib/angular/angular.min.js
-/assets/lib/angular-translate/angular-translate.min.js
-/assets/lib/angular-touch/angular-touch.min.js 
-/assets/lib/angular-ui-router/release/angular-ui-router.min.js
-# Materialize
-/assets/lib/materialize/dist/js/materialize.min.js 
-/assets/lib/materialize/dist/font/roboto/Roboto-Light.woff2
-/assets/lib/materialize/dist/font/roboto/Roboto-Regular.woff2
-/assets/lib/materialize/dist/font/material-design-icons/Material-Design-Icons.woff2
-# Angular Materialize
-/assets/lib/angular-materialize/src/angular-materialize.js
-{else}# JS (Release mode)
+{else}
 /assets/js/jquery.min.js
 # Materialize 
+/assets/css/materialize.min.css
 /assets/js/materialize.min.js 
 /assets/font/roboto/Roboto-Light.woff2
 /assets/font/roboto/Roboto-Regular.woff2
@@ -42,13 +33,12 @@ CACHE MANIFEST
 /assets/js/angular-touch.min.js 
 /assets/js/angular-ui-router.min.js
 /assets/js/angular-materialize.min.js
-{/if}
-{if !$cfg_debug}
+# Pluf mudules
 /module/pluf.min.js
 /module/pluf.saas.min.js
 /module/pluf.admin.min.js
-/module/pluf.wiki.min.js
-/module/hm.min.js
+/module/pluf.help.min.js
+/module/pluf.jahanjoo.min.js
 {/if}
 
 {if $cfg_debug}
@@ -57,17 +47,19 @@ CACHE MANIFEST
 #                                                            #
 ##############################################################
 {else}
-/main/img/background1.png
-/main/img/background2.png
-/main/img/background3.png
+/main/img/background1.svg
+/main/img/background2.svg
+/main/img/background3.svg
+/main/img/parkingyab-logo.svg
 /main/app.min.js
+/main/modal.login.html
 /main/view.app.html
-/main/view.demo.html
-/main/view.feature.html
+/main/view.body.html
+/main/view.explorer.html
 /main/view.footer.html
+/main/view.gettingstart.html
 /main/view.header.html
 {/if}
-
 NETWORK:
 *
 /api/*
