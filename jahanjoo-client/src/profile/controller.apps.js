@@ -1,37 +1,9 @@
-app
-/**
- * 
- */
-.controller('AppsController', function($scope, $tenant,
+'use strict';
+
+app.controller('AppsController', function($scope, $tenant, $usr, $notify,
         PaginatorParameter) {
-  /*
-   * جستجو در نرم افزارهای را انجام می‌دهد.
-   */
-  $scope.search = function(searchText) {
-    $scope.apps.status = 0;
-    var $pag = new PaginatorParameter();
-    $pag.setSize($scope.pageSize).setPage($scope.pageCurrent);
-    if (searchText) $pag.setQuery(searchText);
-    SaaSManager.searchUserApplication($pag).then(function(page) {
-      $scope.pagination = page;
-      $scope.apps.status = 1;
-    }, function(error) {
-      $scope.apps.status = 3;
-      PNotify.error('fail to load user apps', error);
-    });
-  }
 
-  $scope.changePage = function(page) {
-    $scope.pageCurrent = page;
-    $scope.search($scope.searchText);
-  };
-
-  // شنود آماده بودن نرم‌افزار
-  $scope.$on('UserManager.User.Changed', function(event) {
-    $scope.search();
-  });
   
-  $scope.loadAppsController = function(){
     $scope.pageSize = 10;
     /**
      * <ul>
@@ -45,12 +17,40 @@ app
     $scope.apps = {
       status: 0
     }
-    
-    // زمانی که نرم‌افزار آماده بود.
-    if ($scope.isReady()) {
+
+    $usr.session().then(function(){
+      if($usr.isAnonymous()){
+        $scope.status = 3;
+        $scope.errorMessage = 'login to see applications';
+        $notify.error($scope.errorMessage);
+        return;
+      }
       $scope.search();
-    }
+    },function(e){
+        $scope.status = 3;
+        $scope.errorMessage = 'fail to get user info';
+        $notify.error($scope.errorMessage, e);
+    });
+  /*
+   * جستجو در نرم افزارهای را انجام می‌دهد.
+   */
+  $scope.search = function(searchText) {
+    $scope.apps.status = 0;
+    var $pag = new PaginatorParameter();
+    $pag.setSize($scope.pageSize).setPage($scope.pageCurrent);
+    if (searchText) $pag.setQuery(searchText);
+    $tenant.list($pag).then(function(page) {
+      $scope.pagination = page;
+      $scope.apps.status = 1;
+    }, function(e) {
+      $scope.apps.status = 3;
+      $scope.errorMessage = 'fail to load user apps'
+      $notify.error($scope.errorMessag, e);
+    });
   }
 
-  //$scope.loadAppsController(); 
+  $scope.changePage = function(page) {
+    $scope.pageCurrent = page;
+    $scope.search($scope.searchText);
+  };
 });
