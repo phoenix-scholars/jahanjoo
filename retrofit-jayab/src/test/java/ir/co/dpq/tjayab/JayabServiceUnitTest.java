@@ -1,9 +1,10 @@
 package ir.co.dpq.tjayab;
 
-import ir.co.dpq.jayab.IJayabService;
-import ir.co.dpq.jayab.Place;
+import ir.co.dpq.jayab.ILocationService;
+import ir.co.dpq.jayab.Location;
 import ir.co.dpq.jayab.Tag;
 import ir.co.dpq.pluf.PErrorHandler;
+import ir.co.dpq.pluf.PPaginatorPage;
 import ir.co.dpq.pluf.user.IPUserService;
 import ir.co.dpq.pluf.user.PUser;
 
@@ -20,7 +21,7 @@ import retrofit.RestAdapter;
 
 public class JayabServiceUnitTest {
 
-	private IJayabService jayabService;
+	private ILocationService jayabService;
 	private IPUserService userService;
 	private TestSettings testSettings = new TestSettings();
 
@@ -38,7 +39,7 @@ public class JayabServiceUnitTest {
 				// ایجاد یک نمونه
 				.build();
 		this.userService = restAdapter.create(IPUserService.class);
-		this.jayabService = restAdapter.create(IJayabService.class);
+		this.jayabService = restAdapter.create(ILocationService.class);
 	}
 
 	@Test
@@ -46,8 +47,8 @@ public class JayabServiceUnitTest {
 		PUser user = userService.login(testSettings.user.getLogin(),
 				testSettings.password);
 
-		List<Place> places = jayabService.findPlace(testSettings.place.getLatitude(),
-				testSettings.place.getLongitude(), 10, 1000, Tag.Key.AMENITY,
+		PPaginatorPage<Location> places = jayabService.findLocation(testSettings.place.getLatitude(),
+				testSettings.place.getLongitude(), 10, 1000.0, Tag.Key.AMENITY,
 				Tag.Value.PARKING);
 		
 		Assert.assertNotNull(places);
