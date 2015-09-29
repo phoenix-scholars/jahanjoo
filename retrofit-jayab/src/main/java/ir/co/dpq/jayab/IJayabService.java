@@ -67,7 +67,7 @@ public interface IJayabService {
 	// Vote Management
 	// *************************************************************************
 
-	// TODO:  Hadi 1394-07-05: This section sould be edited and completed.
+	// TODO:  Hadi 1394-07-05: This section should be edited and completed.
 	
 	@GET("/api/jayab/location/{placeId}/votes")
 	public void checkVotes(@Path("placeId") int placeId,

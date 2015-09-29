@@ -17,24 +17,11 @@ public class Place {
 	String creation_dtime;
 	String modif_dtime;
 
-	public Place(Double lat, Double lon, String type) {
-		setLatitude(lat);
-		setLongitude(lon);
-	}
-
-	public Place(Integer id, Double lat, Double lon, String name) {
+	public Place(Integer id, Double lat, Double lon) {
 		setId(id);
 		setLatitude(lat);
 		setLongitude(lon);
 		setName(name);
-	}
-
-	public Place(Integer id, Double lat, Double lon, String name, String descr) {
-		setId(id);
-		setLatitude(lat);
-		setLongitude(lon);
-		setName(name);
-		setDescription(descr);
 	}
 
 	public long getId() {
