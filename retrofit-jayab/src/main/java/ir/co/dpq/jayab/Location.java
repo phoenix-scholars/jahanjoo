@@ -1,5 +1,8 @@
 package ir.co.dpq.jayab;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -12,9 +15,9 @@ public class Location {
 	boolean community;
 	String name;
 	String description;
-	long reporter;
-	double latitude;
-	double longitude;
+	Long reporter;
+	Double latitude;
+	Double longitude;
 	// TODO Hadi 1394-07-07: دو فیلد زیر به نوع DateTime جاوا تبدیل شوند
 	@SerializedName("creation_dtime")
 	String creationDateTime;
@@ -33,7 +36,14 @@ public class Location {
 	@SerializedName("owner_class")
 	String ownerClass;
 
-	public Location(Integer id, Double lat, Double lon) {
+	/**
+	 * یک نمونه جدید از این کلاس ایجاد می‌کند.
+	 */
+	public Location(){
+		// 
+	}
+	
+	public Location(Long id, Double lat, Double lon) {
 		setId(id);
 		setLatitude(lat);
 		setLongitude(lon);
@@ -48,27 +58,27 @@ public class Location {
 		this.id = id;
 	}
 
-	public double getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public double getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	public long getReporter() {
+	public Long getReporter() {
 		return reporter;
 	}
 
-	public void setReporter(long reporter) {
+	public void setReporter(Long reporter) {
 		this.reporter = reporter;
 	}
 
@@ -128,4 +138,26 @@ public class Location {
 		this.ownerClass = ownerClass;
 	}
 
+	/**
+	 * داده‌های کلاس را به صورت یک نگاشت می‌دهد.
+	 * 
+	 * @return
+	 */
+	public Map<String, Object> map(){
+		HashMap<String, Object> m = new HashMap<String, Object>();
+		if(getLatitude() != null){
+			m.put("latitude", getLatitude());
+		}
+		if(getLongitude() != null){
+			m.put("longitude", getLongitude());
+		}
+		if(getName() != null){
+			m.put("name", getName());
+		}
+		if(getDescription() != null){
+			m.put("description", getDescription());
+		}
+		// FIXME: maso, 1394: add other information.
+		return m;
+	}
 }

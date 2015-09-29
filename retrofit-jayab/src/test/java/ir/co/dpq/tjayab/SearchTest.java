@@ -12,17 +12,16 @@ import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import retrofit.RestAdapter;
 
-public class JayabServiceUnitTest {
+public class SearchTest {
 
 	private ILocationService jayabService;
 	private IPUserService userService;
-	private TestSettings testSettings = new TestSettings();
 
 	@Before
 	public void createService() {
@@ -31,10 +30,10 @@ public class JayabServiceUnitTest {
 		CookieHandler.setDefault(cookieManager);
 
 		RestAdapter restAdapter = new RestAdapter.Builder()
-		// تعیین کنترل کننده خطا
+				// تعیین کنترل کننده خطا
 				.setErrorHandler(new PErrorHandler())
 				// تعیین آدرس سایت مورد نظر
-				.setEndpoint(testSettings.apiUrl)
+				.setEndpoint(TestSettings.API_ADDRESS)
 				// ایجاد یک نمونه
 				.build();
 		this.userService = restAdapter.create(IPUserService.class);
@@ -43,14 +42,15 @@ public class JayabServiceUnitTest {
 
 	@Test
 	public void findPlace() {
-		PUser user = userService.login(testSettings.user.getLogin(),
-				testSettings.password);
-
-		PPaginatorPage<Location> places = jayabService.findLocation(testSettings.place.getLatitude(),
-				testSettings.place.getLongitude(), 10, 1000.0, Tag.Key.AMENITY,
-				Tag.Value.PARKING);
-		
-		Assert.assertNotNull(places);
-		Assert.assertFalse(places.isEmpty());
+//		PUser user = userService.login("test", "test");
+//		assertNotNull(user);
+//		assertTrue(user.isActive());
+//		assertEquals("test", user.getLogin());
+//
+//		PPaginatorPage<Location> places = jayabService.findLocation(0.0, 0.0, 10, 1000.0, Tag.Key.AMENITY,
+//				Tag.Value.PARKING);
+//
+//		assertNotNull(places);
+//		assertFalse(places.isEmpty());
 	}
 }

@@ -1,16 +1,7 @@
 package ir.co.dpq.tjayab;
 
-import ir.co.dpq.jayab.Location;
+public class TestSettings {
 
-public class TestSettings extends ir.co.dpq.pluf.tuser.TestSettings{
+	public static String API_ADDRESS = "http://localhost:1396";
 
-	public Location place;
-	
-	public TestSettings() {
-		super();
-		place = new Location(0, 0.0, 0.0);
-		place.setName("پارکینگ نادری");
-		
-	}
-	
 }
