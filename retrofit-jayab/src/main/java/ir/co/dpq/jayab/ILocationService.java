@@ -2,7 +2,6 @@ package ir.co.dpq.jayab;
 
 import ir.co.dpq.pluf.PPaginatorPage;
 
-import java.util.List;
 import java.util.Map;
 
 import retrofit.Callback;
