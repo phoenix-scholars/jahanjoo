@@ -11,7 +11,6 @@ import ir.co.dpq.pluf.user.PUser;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;

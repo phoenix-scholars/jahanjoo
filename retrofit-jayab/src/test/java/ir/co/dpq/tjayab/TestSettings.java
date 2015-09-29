@@ -1,7 +1,6 @@
 package ir.co.dpq.tjayab;
 
 import ir.co.dpq.jayab.Location;
-import ir.co.dpq.jayab.Tag;
 
 public class TestSettings extends ir.co.dpq.pluf.tuser.TestSettings{
 
