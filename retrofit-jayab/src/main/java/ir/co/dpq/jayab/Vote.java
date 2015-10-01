@@ -2,10 +2,14 @@ package ir.co.dpq.jayab;
 
 public class Vote {
 
-	long id;
-	long voter; // user id
-	long location; // location id
-	boolean like;
+	private long id;
+	private long voter; // user id
+	private long location; // location id
+	private boolean like;
+
+	public Vote() {
+		like = false;
+	}
 
 	public long getId() {
 		return id;

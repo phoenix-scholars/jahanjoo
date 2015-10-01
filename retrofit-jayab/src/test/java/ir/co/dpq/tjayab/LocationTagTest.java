@@ -28,6 +28,7 @@ public class LocationTagTest {
 	private ILocationService jayabService;
 	private IPUserService userService;
 
+	@SuppressWarnings("rawtypes")
 	@Before
 	public void createService() {
 		CookieManager cookieManager = new CookieManager();
@@ -79,7 +80,7 @@ public class LocationTagTest {
 		assertEquals(l.getDescription(), nl.getDescription());
 		
 		// Add a tag
-		Location tag = jayabService.addTag(nl.getId(), Tag.Key.AMENITY, Tag.Value.PARKING);
+		jayabService.addTag(nl.getId(), Tag.Key.AMENITY, Tag.Value.PARKING);
 	}
 	
 }
