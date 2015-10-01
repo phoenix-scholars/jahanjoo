@@ -1,9 +1,6 @@
 package ir.co.dpq.tjayab;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -26,7 +23,7 @@ import ir.co.dpq.pluf.user.PUser;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 
-public class SearchTest {
+public class LocationTagTest {
 
 	private ILocationService jayabService;
 	private IPUserService userService;
@@ -58,27 +55,11 @@ public class SearchTest {
 		this.jayabService = restAdapter.create(ILocationService.class);
 	}
 
-	@Test
-	public void findPlace00() {
-		PUser user = userService.login("admin", "admin");
-		assertNotNull(user);
-		assertTrue(user.isActive());
-		assertEquals("admin", user.getLogin());
-
-		PPaginatorPage<Location> places = jayabService.findLocation(0.1, 0.1, 10, 1000.0, Tag.Key.AMENITY,
-				Tag.Value.PARKING);
-
-		assertNotNull(places);
-		assertFalse(places.isEmpty());
-		assertEquals(places.getCounts(), places.getItems().size());
-	}
-
 	/*
-	 * توی یه مکان تصادفی یک نقطه اضافه می‌شه. در صورتی که جستجو رو توی اون مکان
-	 * انجام بدیم باید حداقل مکان در آنجا پیدا بشه.d
+	 * توی این تست یک مکان ایجاد می‌شه (به صورت تصادفی) بعد یک برچسب بهش زده می‌شه. 
 	 */
 	@Test
-	public void findPlace01() {
+	public void addTagTest00() {
 		PUser user = userService.login("admin", "admin");
 		assertNotNull(user);
 		assertTrue(user.isActive());
@@ -90,54 +71,15 @@ public class SearchTest {
 		l.setDescription("This is test description" + Math.random());
 		l.setLatitude(Math.random());
 		l.setLongitude(Math.random());
-
+		
 		// Post to the server
 		Location nl = jayabService.createLocation(l.map());
 		assertNotNull(nl);
 		assertEquals(l.getName(), nl.getName());
 		assertEquals(l.getDescription(), nl.getDescription());
 		
-
-		PPaginatorPage<Location> places = jayabService.findLocation(l.map());
-
-		assertNotNull(places);
-		assertFalse(places.isEmpty());
-		assertEquals(places.getCounts(), places.getItems().size());
+		// Add a tag
+		Location tag = jayabService.addTag(nl.getId(), Tag.Key.AMENITY, Tag.Value.PARKING);
 	}
 	
-	/*
-	 * در این تست ایجاد و جستجوی یک مکان انجام می‌شود با این تفاوت که در آن از برچسب
-	 * گذاری نیز استفاده می‌شود. 
-	 */
-	@Test
-	public void findPlace02() {
-		PUser user = userService.login("admin", "admin");
-		assertNotNull(user);
-		assertTrue(user.isActive());
-		assertEquals("admin", user.getLogin());
-		
-		// Create a location
-		Location l = new Location();
-		l.setName("Test name" + Math.random());
-		l.setDescription("This is test description" + Math.random());
-		l.setLatitude(Math.random());
-		l.setLongitude(Math.random());
-		
-		// Post to the server
-		Location nl = jayabService.createLocation(l.map());
-		assertNotNull(nl);
-		assertEquals(l.getName(), nl.getName());
-		assertEquals(l.getDescription(), nl.getDescription());
-		
-		Location tag = jayabService.addTag(nl.getId(), Tag.Key.AMENITY, Tag.Value.PARKING);
-		
-		PPaginatorPage<Location> places = jayabService.findLocation(l.getLatitude(), l.getLongitude(), 10, 1000.0,
-				Tag.Key.AMENITY, Tag.Value.PARKING);
-		
-		assertNotNull(places);
-		assertFalse(places.isEmpty());
-		assertEquals(places.getCounts(), places.getItems().size());
-	}
 }
-
-
