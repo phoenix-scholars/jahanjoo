@@ -58,7 +58,7 @@ app
       title: 'loading user date',
       message: 'try to get user data from the server'
     }
-    return $tenant.load();
+    return $tenant.session();
   }, function(error) {
     // fail to load the user
   }).then(function() {

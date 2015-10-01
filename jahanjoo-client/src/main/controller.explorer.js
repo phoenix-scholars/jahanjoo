@@ -6,23 +6,31 @@ app
 /**
  * 
  */
-.controller('ExplorerController', function($scope, $jlocation, PNotify,
+.controller('ExplorerController', function($scope, $jlocation, $notify, $usr,
         PaginatorParameter) {
+
   $scope.pageSize = 10;
   $scope.config = {
     userLocation: false,
     locationDetail: false,
     locationOperator: false
   }
-  /*
-   * 0- ready 1- loading 2- error
-   */
+  // 0- ready
+  // 1- loading
+  // 2- error
   $scope.pageState = 1;
   $scope.pagination = {
     'page_number': 1,
     'current_page': 1
   };
   $scope.searchText = '';
+  $usr.session().then(function(user) {
+    $scope.user = user;
+    $scope.newSearch();
+  }, function() {
+    $scope.pageState = 2;
+  });
+
   $scope.doSearch = function(pagParam) {
     $scope.pageState = 1;
     if ($scope.config.userLocation == true) {
@@ -59,24 +67,26 @@ app
   }
 
   $scope.removeLocation = function(location) {
-    $jlocation.removeLocation(location.id).then(function() {
-      PNotify.info('the location is removed');
-    }, function() {
-      PNotify.error('fail to remove the location');
-    }).then(function(){
+    location.remove().then(function() {
+      $notify.info('the location is removed');
       $scope.newSearch($scope.searchTest);
+    }, function() {
+      $notify.error('fail to remove the location');
     });
   }
 
   $scope.addLocation = function(location_title, location_description,
           location_longitude, location_latitude) {
-    $jlocation.addLocation(location_title, location_description,
-            location_longitude, location_latitude).then(function() {
-      PNotify.info('the location is added');
-    }, function() {
-      PNotify.error('fail to add the location');
-    }).then(function(){
+    $jlocation.add({
+      name: location_title,
+      description: location_description,
+      latitude: location_longitude,
+      longitude: location_latitude
+    }).then(function() {
+      $notify.info('the location is added');
       $scope.newSearch($scope.searchTest);
+    }, function() {
+      $notify.error('fail to add the location');
     });
   }
 });

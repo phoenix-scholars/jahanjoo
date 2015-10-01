@@ -8,12 +8,13 @@ app
  * 
  */
 .controller('ApplicationController',
-        function($scope, $window, $translate, $notify, $act, $usr, $menu) {
+        function($scope, $window, $translate, $notify, $act, $usr, $menu, $state) {
           /**
            * عملیات مورد نیاز برای ورود به سیستم را پیاده سازی می‌کند. برای
            * استفاده از این تابع باید مادال ورود را به نمایش اضافه کنید.
            */
           var actionLogin = {
+            priority: 1,
             label: 'login',
             description: 'user login action',
             helpId: 'user.login',
@@ -23,38 +24,38 @@ app
             action: function() {
               $('#loginModal').openModal();
             },
-            priority: 1
           };
           /*
            * اضافه کردن به منو بقل
            */
           $menu.add('sidebar', actionLogin).add('sidebar', {
+            priority: 3,
             command: 'pluf.user.logout',
             priority: 2
           }).add('sidebar', {
             command: 'pluf.user.profile',
-            priority: 3
           }).add('sidebar', {
+            priority: 4,
             label: 'profile',
             command: 'pluf.saas.app.goto',
             params: ['user'],
             visible: function() {
               return !$usr.isAnonymous();
             },
-            priority: 4
           }).add('sidebar', {
-            label: 'register',
-            command: 'pluf.saas.app.goto',
-            params: ['page/register'],
-            visible: function() {
-              return $usr.isAnonymous();
-            },
-            priority: 5
-          }).add('sidebar', {
+            priority: 6,
             label: 'help',
             command: 'pluf.saas.app.goto',
             params: ['page/help'],
-            priority: 6
+          }).add('sidebar', {
+            priority: 4,
+            label: 'location explorer',
+            visible: function() {
+              return !$usr.isAnonymous();
+            },
+            action: function() {
+              $state.go('app.explorer');
+            },
           });
 
           /*
@@ -118,6 +119,7 @@ app
     'profile': 'پروفایل',
     'help': 'راهنما',
     'register': 'ثبت نام',
+    'location explorer' : 'آخرین مکان‌ها',
   });
   $translateProvider.preferredLanguage('fa');
 });
