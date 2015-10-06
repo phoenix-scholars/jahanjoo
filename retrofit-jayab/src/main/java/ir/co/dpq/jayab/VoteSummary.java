@@ -1,9 +1,15 @@
 package ir.co.dpq.jayab;
 
+import com.google.gson.annotations.SerializedName;
+
 public class VoteSummary {
 
-	long likes;
-	long dislikes;
+
+	@SerializedName("like")
+	private long likes;
+
+	@SerializedName("dislike")
+	private long dislikes;
 
 	public long getLikes() {
 		return likes;

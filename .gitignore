@@ -1,1 +1,8 @@
-/.project
+
+# Eclipse IDE
+.settings
+.project
+
+# IntegJ IDE
+.idea
+*.iml

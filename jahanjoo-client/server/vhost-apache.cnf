@@ -1,0 +1,30 @@
+<VirtualHost *:1396>
+ DocumentRoot /home/maso/Workspace/git/jahanjoo/jahanjoo-client/src/
+ ServerName jayab.dpq.co.ir
+ ServerAdmin info@dpq.co.ir
+ <Directory /home/maso/Workspace/git/jahanjoo/jahanjoo-client/src/>
+  AllowOverride All
+  Order allow,deny
+  Allow from all
+  Options +FollowSymLinks
+  Require all granted
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*) /index.php/$1
+ </Directory>
+</VirtualHost>
+<VirtualHost *:13961>
+ DocumentRoot /home/maso/Workspace/git/jahanjoo/jahanjoo-client/dest/
+ ServerName jayab.dpq.co.ir
+ ServerAdmin info@dpq.co.ir
+ <Directory /home/maso/Workspace/git/jahanjoo/jahanjoo-client/dest/>
+  AllowOverride All
+  Order allow,deny
+  Allow from all
+  Options +FollowSymLinks
+  Require all granted
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*) /index.php/$1
+ </Directory>
+</VirtualHost>

@@ -43,11 +43,12 @@ public class SearchTest {
 				/*
 				 * این تبدیل برای صفحه بندی به کار گرفته می‌شود.
 				 */
-				.registerTypeAdapter(new TypeToken<PPaginatorPage<Location>>() {}.getType(), new DeserializerJson<Location>());
+				.registerTypeAdapter(new TypeToken<PPaginatorPage<Location>>() {
+				}.getType(), new DeserializerJson<Location>());
 		Gson gson = gsonBuilder.create();
 
 		RestAdapter restAdapter = new RestAdapter.Builder()
-		// تعیین مبدل داده
+				// تعیین مبدل داده
 				.setConverter(new GsonConverter(gson))
 				// تعیین کنترل کننده خطا
 				.setErrorHandler(new PErrorHandler())
@@ -66,27 +67,12 @@ public class SearchTest {
 		assertTrue(user.isActive());
 		assertEquals("admin", user.getLogin());
 
-		PPaginatorPage<Location> places = jayabService.findLocation(0.1, 0.1,
-				10, 1000.0, Tag.Key.AMENITY, Tag.Value.PARKING);
+		PPaginatorPage<Location> places = jayabService.findLocation(0.1, 0.1, 10, 1000.0, Tag.Key.AMENITY,
+				Tag.Value.PARKING);
 
 		assertNotNull(places);
 		assertFalse(places.isEmpty());
 		assertEquals(places.getCounts(), places.getItems().size());
-	}
-
-	@Test
-	public void findPlace00_detail() {
-		PUser user = userService.login("admin", "admin");
-		assertNotNull(user);
-		assertTrue(user.isActive());
-		assertEquals("admin", user.getLogin());
-
-		PPaginatorPage<Location> places = jayabService.findLocation(0.0, 0.0,
-				10, 1000.0, Tag.Key.AMENITY, Tag.Value.PARKING);
-
-		assertNotNull(places);
-		assertFalse(places.isEmpty());
-		assertTrue(places.getCounts() > 0);
 	}
 
 	/*
@@ -144,15 +130,44 @@ public class SearchTest {
 		assertEquals(l.getName(), nl.getName());
 		assertEquals(l.getDescription(), nl.getDescription());
 
-		Location tag = jayabService.addTag(nl.getId(), Tag.Key.AMENITY,
-				Tag.Value.PARKING);
+		Location tag = jayabService.addTag(nl.getId(), Tag.Key.AMENITY, Tag.Value.PARKING);
 
-		PPaginatorPage<Location> places = jayabService.findLocation(
-				l.getLatitude(), l.getLongitude(), 10, 1000.0, Tag.Key.AMENITY,
-				Tag.Value.PARKING);
+		PPaginatorPage<Location> places = jayabService.findLocation(l.getLatitude(), l.getLongitude(), 10, 1000.0,
+				Tag.Key.AMENITY, Tag.Value.PARKING);
 
 		assertNotNull(places);
 		assertFalse(places.isEmpty());
 		assertEquals(places.getCounts(), places.getItems().size());
+	}
+
+	@Test
+	public void findPlace03() {
+		PUser user = userService.login("admin", "admin");
+		assertNotNull(user);
+		assertTrue(user.isActive());
+		assertEquals("admin", user.getLogin());
+
+		// Create a location
+		Location l = new Location();
+		l.setName("Test name" + Math.random());
+		l.setDescription("This is test description" + Math.random());
+		l.setLatitude(0.0);
+		l.setLongitude(0.0);
+
+		// Post to the server
+		Location nl = jayabService.createLocation(l.map());
+		assertNotNull(nl);
+		assertEquals(l.getName(), nl.getName());
+		assertEquals(l.getDescription(), nl.getDescription());
+
+		// Add a tag
+		jayabService.addTag(nl.getId(), Tag.Key.AMENITY, Tag.Value.PARKING);
+
+		PPaginatorPage<Location> places = jayabService.findLocation(0.0, 0.0, 10, 1000.0, Tag.Key.AMENITY,
+				Tag.Value.PARKING);
+
+		assertNotNull(places);
+		assertFalse(places.isEmpty());
+		assertTrue(places.getCounts() > 0);
 	}
 }
