@@ -16,7 +16,7 @@
 
 دانلود پارکینگ‌یاب از کافه‌بازار:
 
-![ParkingYab Logo](http://jahanoo.ir/main/img/parkingyab-logo.png)[پارکینگ‌یاب](http://cafebazaar.ir/app/ir.co.dpq.jayab.park/)
+![ParkingYab Logo](http://jahanjoo.ir/main/img/parkingyab-logo.png)[پارکینگ‌یاب](http://cafebazaar.ir/app/ir.co.dpq.jayab.park/)
 
 ### مسجدیاب
 
@@ -24,7 +24,7 @@
 
 دانلود مسجدیاب از کافه‌بازار:
 
-![MasjedYab Logo](http://jahanoo.ir/main/img/masjedyab-logo.png)[مسجدیاب](http://cafebazaar.ir/app/ir.co.dpq.jayab.mosque/)
+![MasjedYab Logo](http://jahanjoo.ir/main/img/masjedyab-logo.png)[مسجدیاب](http://cafebazaar.ir/app/ir.co.dpq.jayab.mosque/)
 
 ### بوتیک‌یاب
 
@@ -42,7 +42,7 @@
 
 دانلود توالت‌یاب! از کافه‌بازار:
 
-![ToiletYab Logo](http://jahanoo.ir/main/img/toiletyab-logo.png)[توالت‌یاب!](http://cafebazaar.ir/app/ir.co.dpq.jayab.toilet/)
+![ToiletYab Logo](http://jahanjoo.ir/main/img/toiletyab-logo.png)[توالت‌یاب!](http://cafebazaar.ir/app/ir.co.dpq.jayab.toilet/)
 
 
 ## چطور شروع کنیم
@@ -86,7 +86,7 @@
 ### عضویت و ایجاد حساب 
 
 برای عضویت کافی است از طریق یکی از اپلیکیشن‌های مجموعه جایاب و یا از طریق سایت
-htto://www.jahanoo.ir یک حساب کاربری (به صورت رایگان) ایجاد کنید.
+htto://www.jahanjoo.ir یک حساب کاربری (به صورت رایگان) ایجاد کنید.
 
 با ایجاد حساب کاربری از طریق سایت یا یکی از اپلیکیشن‌ها، می‌توانید از همان حساب
 کاربری در سایر اپلیکیشن‌ها نیز استفاده کنید.
